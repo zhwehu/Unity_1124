@@ -24,49 +24,49 @@ public class TetrisManager : MonoBehaviour
 
     #region 事件
 
-    private void Start()
-    {
-        Generate_Tetris();
-        // int add = addScore();
-        // print("傳回整數: "+ add);
-        time();
-        over();
-        reture();
-        exit();
+    //private void Start()
+    //{
+    //Generate_Tetris();
+    // int add = addScore();
+    // print("傳回整數: "+ add);
+    //time();
+    //over();
+    //reture();
+    //exit();
 
-    }
+    //}
     #endregion
 
     #region 方法
 
-    private void Generate_Tetris()
+    private void SpawnTetris()
     {
-        print("生成俄羅斯方塊");
+        
     }
 
-    public void addScore(int Score)
+    public void addScore(int add)
     {
-        print("添加分數:" + Score);
+        
     }
 
-    private void time()
+    private void GameTime()
     {
-        print("遊戲時間");
+       
     }
 
-    private void over()
+    private void GmaeOver()
     {
-        print("遊戲結束");
+        
     }
 
-    public void reture()
+    public void ReplyGame()
     {
-        print("重新遊戲");
+        
     }
 
-    public void exit()
+    public void QuitGame()
     {
-        print("離開遊戲");
+        
     }
 
     #endregion
