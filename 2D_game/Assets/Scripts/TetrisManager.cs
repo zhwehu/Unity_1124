@@ -68,9 +68,8 @@ public class TetrisManager : MonoBehaviour
         //GetComponent<任何元件>()
         //<T>泛型 - 指的是所有類型
         //目前俄羅斯方塊 . 取得元件<介面變形>().座標 = 二維向量
-        current.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,620);
-        //current.GetComponent<RectTransform>().Scale = new Vector3(0.3f,0.3f,0.3f);
-
+        current.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,400);
+   
         // 2.上一次俄羅斯方塊隱藏
         tetris.SetActive(false);
         // 3.隨機取得下一個
