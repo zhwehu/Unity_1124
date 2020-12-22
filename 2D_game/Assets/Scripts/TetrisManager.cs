@@ -42,7 +42,7 @@ public class TetrisManager : MonoBehaviour
 
     #endregion
 
-    #region 方法
+    #region 事件
 
     // 開始事件 : 開始時候執行一次
     private void Start()
@@ -55,40 +55,68 @@ public class TetrisManager : MonoBehaviour
     {
         ControlTertis();
     }
+    #endregion
 
+    #region 方法
     private void ControlTertis()
     {
+
         //如果 已經有 目前的俄羅斯方塊
         if (currentTetris)
         {
             timer += Time.deltaTime; // 計時器 累加 一偵的時間 - 累加時間
-            
+
             if (timer >= timeFall)
             {
-                currentTetris.anchoredPosition -= new Vector2(0, 2);
+                timer = 0;
+                currentTetris.anchoredPosition -= new Vector2(0, 50);
+            }
+
+
+            #region 控制俄羅斯方塊的左右、旋轉和加速
+            //如果 X 座標 小於 350 才能往右移動
+            if (currentTetris.anchoredPosition.x < 310)
+            {
+                //或者符號 : ||
+                //按下 D 往右50
+                if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    currentTetris.anchoredPosition += new Vector2(50, 0);
+                }
+            }
+
+
+            //按下 A 往左50
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                currentTetris.anchoredPosition -= new Vector2(50, 0);
+            }
+
+            //按下 W 逆時針轉90度
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                //屬性面板上面的 rotation 必須用eulerAngles控制
+                currentTetris.eulerAngles += new Vector3(0, 0, 90);
+            }
+            //如果玩家 按住 S 就加速
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                timeFall = 0.2f;
+            }
+            //否則 就恢復速度
+            else
+            {
+                timeFall = 1.5f;
+            }
+            #endregion
+
+            //如果 目前的俄羅斯方塊 Y軸 等於 -300 就叫下一顆
+            if (currentTetris.anchoredPosition.y == -300)
+            {
+                StartGame();
             }
         }
-        //或者符號 : ||
-        //按下 D 往右50
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) 
-        {
-            currentTetris.anchoredPosition += new Vector2(50, 0);
-        }
-        //按下 A 往左50
-        if (Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            currentTetris.anchoredPosition -= new Vector2(50, 0);
-        }
-        
-        //按下 W 逆時針轉90度
-        if (Input.GetKeyDown(KeyCode.W) ||Input.GetKeyDown(KeyCode.S))
-        {
-            //屬性面板上面的 rotation 必須用eulerAngles控制
-            currentTetris.eulerAngles += new Vector3(0, 0, 90);
-        } 
-
     }
-
     /// <summary>
     /// 生成俄羅斯方塊
     /// 1.隨機顯示一個下一顆俄羅斯方塊0-8
