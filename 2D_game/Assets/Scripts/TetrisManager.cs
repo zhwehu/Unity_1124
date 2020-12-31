@@ -84,12 +84,15 @@ public class TetrisManager : MonoBehaviour
                     currentTetris.anchoredPosition += new Vector2(50, 0);
                 }
             }
-
-
-            //按下 A 往左50
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            //如果 X 座標 小於 350 才能往右移動
+            if (currentTetris.anchoredPosition.x > -310)
             {
-                currentTetris.anchoredPosition -= new Vector2(50, 0);
+                //或者符號 : ||
+                //按下 D 往右50
+                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    currentTetris.anchoredPosition -= new Vector2(50, 0);
+                }
             }
 
             //按下 W 逆時針轉90度
