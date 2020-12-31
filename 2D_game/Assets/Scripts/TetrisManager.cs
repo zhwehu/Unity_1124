@@ -57,6 +57,7 @@ public class TetrisManager : MonoBehaviour
     }
     #endregion
 
+
     #region 方法
     private void ControlTertis()
     {
